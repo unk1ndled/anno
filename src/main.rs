@@ -14,6 +14,8 @@ fn main() {
     } else if x == 42 { // This branch is redundant (`clippy::collapsible_if`)
         println!("x is still 42");
     }
-    
+
+ //shadow for testing
+
     let _unused_result = "Hello".to_string(); // Unused result (`clippy::unused_self`)
 }
