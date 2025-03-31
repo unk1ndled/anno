@@ -3,7 +3,7 @@ name: Clippy check
 on: push
 
 jobs:
-  cargo doc:
+  cargo_doc:
     runs-on: ubuntu-latest
     steps:
       - uses: unk1ndled/rs-doc-check@v1.0.0
