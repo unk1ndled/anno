@@ -3,32 +3,33 @@
 #![warn(private_doc_tests)]
 
 //! This module demonstrates Clippy lints and Cargo doc warnings.
+
 /// A function with missing documentation.
 fn main() {
-    let x = 42; // Unused variable (warns with `clippy::let_and_return` if returned)
-    let y = x + 0; // Redundant operation (`clippy::identity_op`)
-    let z = y * 1; // Redundant operation (`clippy::identity_op`)
-    println!("z: {}", z);
+    let num = 100; // Unused variable (warns with `clippy::let_and_return` if returned)
+    let sum = num + 0; // Redundant operation (`clippy::identity_op`)
+    let product = sum * 1; // Redundant operation (`clippy::identity_op`)
+    println!("product: {}", product);
 
-    let vec = vec![1, 2, 3, 4, 5];
-    for i in 0..vec.len() {
+    let list = vec![10, 20, 30, 40, 50];
+    for i in 0..list.len() {
         // Better to use `.iter()` (`clippy::needless_range_loop`)
-        println!("{}", vec[i]);
+        println!("{}", list[i]);
     }
 
-    if x == 42 {
-        println!("x is 42");
-    } else if x == 42 {
+    if num == 100 {
+        println!("num is 100");
+    } else if num == 100 {
         // This branch is redundant (`clippy::collapsible_if`)
-        println!("x is still 42");
+        println!("num is still 100");
     }
 
     // Shadow for testing
-    let _unused_result = "Hello".to_string(); // Unused result (`clippy::unused_self`)
+    let _unused_string = "Rust".to_string(); // Unused result (`clippy::unused_self`)
 }
 
 /// This function is undocumented but contains a broken link.
-/// See [`NonExistentStruct`] for more details.
-fn undocumented_function() {
+/// See [`UnknownType`] for more details.
+fn undocumented_fn() {
     // This function is missing documentation and contains an invalid intra-doc link.
 }
