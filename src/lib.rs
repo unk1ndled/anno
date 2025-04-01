@@ -2,33 +2,34 @@
 #![warn(rustdoc::broken_intra_doc_links)]
 #![warn(private_doc_tests)]
 
-//! This module demonstrates Clippy lints and Cargo doc warnings.
-/// A function with missing documentation.
+//! This module demonstrates various Clippy lints and documentation warnings.
+
+/// A function with missing documentation that triggers Clippy warnings.
 fn main() {
-    let x = 42; // Unused variable (warns with `clippy::let_and_return` if returned)
-    let y = x + 0; // Redundant operation (`clippy::identity_op`)
-    let z = y * 1; // Redundant operation (`clippy::identity_op`)
-    println!("z: {}", z);
+    let a = 10; // Unused variable (warns with `clippy::let_and_return` if returned)
+    let b = a * 0; // Always zero (`clippy::identity_op`)
+    let c = b + 5 - 5; // Redundant calculation (`clippy::identity_op`)
+    println!("c: {}", c);
 
-    let vec = vec![1, 2, 3, 4, 5];
-    for i in 0..vec.len() {
-        // Better to use `.iter()` (`clippy::needless_range_loop`)
-        println!("{}", vec[i]);
+    let numbers = vec![10, 20, 30, 40];
+    for i in 0..numbers.len() {
+        // Suggests using `.iter()` (`clippy::needless_range_loop`)
+        println!("{}", numbers[i]);
     }
 
-    if x == 42 {
-        println!("x is 42");
-    } else if x == 42 {
-        // This branch is redundant (`clippy::collapsible_if`)
-        println!("x is still 42");
+    if a > 5 {
+        if a > 5 {
+            // Suggests collapsing (`clippy::collapsible_if`)
+            println!("a is greater than 5");
+        }
     }
 
-    // Shadow for testing
-    let _unused_result = "Hello".to_string(); // Unused result (`clippy::unused_self`)
+    // Shadowing an unused result
+    let _ignored = "World".to_string(); // Unused result (`clippy::unused_self`)
 }
 
-/// This function is undocumented but contains a broken link.
-/// See [`NonExistentStruct`] for more details.
-fn undocumented_function() {
-    // This function is missing documentation and contains an invalid intra-doc link.
+/// This function contains a broken intra-doc link.
+/// See [`UndefinedType`] for more details.
+fn another_undocumented_function() {
+    // Missing documentation and invalid intra-doc link.
 }
