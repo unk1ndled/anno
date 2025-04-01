@@ -1,4 +1,4 @@
-name: Clippy check
+name: doc check
 
 on: push
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Ensures the repo is cloned properly
+        uses: actions/checkout@v4 
 
       - name: Run Cargo Doc Check
         uses: unk1ndled/rs-doc-check@v1.0.0
